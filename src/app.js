@@ -62,10 +62,12 @@ app.get('/weather', (req, res) => {
                     error: forecastError
                 })
             }
-    
+
+            const { description, humidity, temperature } = forecastData
+            const forecastString = `It is currently ${description.toLowerCase()} outside. The temperature is ${temperature.actual} degrees, while it's perceived as ${temperature.perceived} degrees. The humidity stands at ${humidity}%.`
             res.send({
                 location,
-                forecast: forecastData
+                forecast: forecastString
             })
         })
     })
